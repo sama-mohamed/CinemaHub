@@ -1,0 +1,29 @@
+﻿@model Category
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        @Html.Partial("../shared/_SideBar.cshtml")
+
+
+        <div class="col">
+            <div class="table-responsive mt-5">
+                <section class="get-in-touch">
+                    <h1 class="title">Add New Category</h1>
+                    <form class="contact-form row" action="/Admin/Category/AddCategory" method="post">
+                        <div class="form-field ">
+                           <input id="name" class="input-text js-input" type="text" name="Name" required>
+                            <label class="label" for="name">Name</label>
+                            <span class="text-danger" asp-validation-for="Name"></span>
+                        </div>
+                        <div class="form-field col-lg-12 ">
+                            <input class="submit-btn" type="submit" value="Submit" onclick="showCustomAlert()">
+                        </div>
+                    </form>
+                </section>
+
+    
+            </div>
+        </div>
+
+    </div>
+</div>

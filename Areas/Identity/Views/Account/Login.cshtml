@@ -1,0 +1,67 @@
+﻿@model CinemaWebSite.Models.ViewModels.LoginVM
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+
+<div class="col">
+    <div class="table-responsive mt-5">
+        <section class="get-in-touch">
+            <h1 class="title">Login</h1>
+            <form asp-action="Login" class="contact-form row align-items-center ">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-field">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control input-text js-input" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-field">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control input-text js-input" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group form-field form-check ms-2 ">
+                    <label class="form-check-label text-light">
+                        <input class="form-check-input" asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                    </label>
+                </div>
+                <div class="form-field">
+                    <input type="submit" value="Login" class="submit-btn" />
+                </div>
+                <div class="form-group form-field form-check">
+                    <a href="/Identity/Account/Register" class="text-decoration-none text-light fw-bold custom-link">
+                        Don’t have an account? <span class="text-primary">Sign-Up</span>
+                    </a>
+                </div>
+            </form>
+            <form id="external-account" asp-action="ExternalLogin" method="post" class="form-horizontal">
+                <div class="text-center">
+                    <div class="d-flex align-items-center my-3">
+                        <hr class="flex-grow-1 border-light">
+                        <span class="mx-2 text-light fw-bold">or</span>
+                        <hr class="flex-grow-1 border-light">
+                    </div>
+                    @foreach (var provider in ViewBag.ExternalLogins)
+                    {
+                        <button type="submit" class="btn btn-danger w-75 mx-auto d-block mt-3 py-2 fs-5" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                            <i class="bi bi-google me-2"></i> @provider.DisplayName
+                        </button>
+                    }
+                </div>
+
+            </form>
+
+        </section>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

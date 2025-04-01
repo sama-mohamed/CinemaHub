@@ -1,0 +1,38 @@
+﻿@model Cinema
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        @Html.Partial("../shared/_SideBar.cshtml")
+
+        <div class="col">
+            <div class="table-responsive mt-5">
+                <section class="get-in-touch">
+                    <h1 class="title">Add New Cenima</h1>
+                    <form class="contact-form row" action="/Admin/Cinema/AddCinema" method="post">
+                        <div class="form-field col-lg-6">
+                            <input id="name" class="input-text js-input" type="text" name="Name" value="@Model.Name" required>
+                            <label class="label" for="name">Name</label>
+                            <span class="text-danger" asp-validation-for="Name"></span>
+                        </div>
+                        <div class="form-field col-lg-6">
+                            <input id="Address" class="input-text js-input" type="text" name="Address" value="@Model.Address" required>
+                            <label class="label" for="Address">Address</label>
+                            <span class="text-danger" asp-validation-for="Address"></span>
+
+                        </div>
+                        <div class="form-field col-lg-12">
+                            <input id="Description" class="input-text js-input" type="text" name="Description" value="@Model.Description" required>
+                            <label class="label" for="Description">Description</label>
+                            <span class="text-danger" asp-validation-for="Description"></span>
+
+                        </div>
+
+                        <div class="form-field col-lg-12">
+                            <input class="submit-btn" type="submit" value="Submit" onclick="showCustomAlert()">
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

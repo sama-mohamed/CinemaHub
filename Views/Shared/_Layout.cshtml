@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CinemaWebSite</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   <link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/CinemaWebSite.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+<body class="bg-dark">
+
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow sticky-top">
+        <div class="container-fluid">
+            <img src="/images/logo.png" style="width:5%;" class="me-4"/>
+            <a class="navbar-brand text-white" href="/Customer/Home/Index"><strong style="color: #ffc107;">CinemaHub</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between" id="navbarNav">
+                <ul class="navbar-nav  mb-2 mb-lg-0 ms-1">
+                    
+                    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                    {
+                        <li class="nav-item">
+                         <a class="nav-link text-white active" aria-current="page" href="/Admin/Category/Index">Dashboard</a>
+                        </li>
+                    }
+                    
+
+                </ul>
+                <div class="w-25">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form class="d-flex align-items-center" role="search">
+
+                            <input class="form-control w-100 me-1" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+
+
+                        </form>
+                    }
+                </div>
+                <div class="row w-25 d-flex align-items-center me-2">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <h4 class="text-light col-lg-7 mb-0">Hello @User.Identity.Name</h4>
+                        <a href="/Identity/Account/LogOut" class="btn btn-danger col-lg-5 ms-auto text-light" type="button">Logout</a>
+                    }
+                    else
+                    {
+                        <a href="/Identity/Account/Login" style="background-color: transparent; border-color: #a72879; color: #a72879;" class="btn btn-login col-lg-5 me-2" type="button">Login</a>
+                        <a href="/Identity/Account/Register" style="background-color: transparent; border-color: #e67e00; color: #e67e00;" class="btn btn-register movie-card__button col-lg-5" type="button">Register</a>
+                    }
+                </div>
+
+
+
+                
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Custom CSS -->
+    <style>
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: lightgray !important;
+            }
+
+    </style>
+
+
+    <div class="">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+   
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/admin.js" asp-append-version="true"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script src="js/dashboard1.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,105 @@
+﻿
+
+
+
+<div class="our-work text-center movie-card col-lg-8 justify-content-center align-items-center bg-dark ">
+    <div class="row h-100">
+        <!-- صورة الفيلم -->
+        <div class="col-sm-6 col-md-4 col-lg-5 d-flex align-items-stretch">
+            <div class="box bg-white w-100 d-flex align-items-stretch" data-work="@Model.Name">
+                <img class="img-fluid w-100 h-100 object-fit-cover" src="/images/movies/@Model.ImgUrl" alt="">
+            </div>
+        </div>
+
+        <div class="row col-sm-6 col-md-4 col-lg-7 align-items-end">
+            <div class="col">
+                <h4 class="movie-card__info d-flex justify-content-between align-baseline text-start">
+                    Price: @Model.Price.ToString("c")
+                    @if (Model.MovieStatus==0)
+                    {
+                        <button type="button" class="btn btn-danger movie-card__button" disabled>Expired</button>
+                    }
+                    else if (Model.MovieStatus == 1)
+                    {
+                        <button type="button" class="btn btn-info movie-card__button" disabled>Available</button>
+
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-warning movie-card__button" disabled>UpComing</button>
+
+                    }
+                </h4>
+
+                <h4 class="text-start">Movie Description: </h4>
+                <h5>@Model.Description</h5>
+                <br />
+                <p class="text-start fs-4">📅Start Date: <span class="text-start fs-5">@Model.StartDate</span></p>
+                <p class="text-start fs-4">⏳End Date: <span class="text-start fs-5">@Model.EndDate</span></p>
+                <p class="text-start fs-4">🎬Category: <span class="text-start fs-5">@Model.Category.Name</span></p>
+                <p class="text-start fs-4">🎥Cinema: <span class="text-start fs-5">@Model.Cinema.Name</span></p>
+
+                <!-- صور الممثلين -->
+                <div class="d-flex flex-wrap gap-2">
+                    @foreach (var actorMovie in Model.ActorMovies)
+                    {
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#actorModal-@actorMovie.Actor.Id">
+                            <img src="/images/cast/@actorMovie.Actor.ProfilePicture" style="max-width: 80px;" alt="@actorMovie.Actor.FirstName" />
+                        </a>
+
+                        <!-- Modal لكل ممثل -->
+                        <div class="modal fade " id="actorModal-@actorMovie.Actor.Id" tabindex="-1" aria-labelledby="actorModalLabel-@actorMovie.Actor.Id" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header d-flex align-items-center">
+                                        <img src="/images/cast/@actorMovie.Actor.ProfilePicture" class="img-fluid rounded-circle me-2"
+                                             style="max-width: 50px; height: 50px; object-fit: cover;" alt="@actorMovie.Actor.FirstName" />
+                                        <h5 class="modal-title m-0 text-black-50" id="actorModalLabel-@actorMovie.Actor.Id">
+                                            @actorMovie.Actor.FirstName @actorMovie.Actor.LastName
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body text-center">
+                                        <p class="mt-3 text-start fs-4 text-black-50">Bio: <span class="text-start fs-5">@actorMovie.Actor.Bio</span></p>
+                                        <p class="mt-3 text-start fs-4 text-black-50">News: <span class="text-start fs-">@actorMovie.Actor.News</span></p>
+
+                                    </div>
+                                    <div class="modal-footer w-100 d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">
+                                                <i class="bi bi-facebook fs-4"></i>
+                                            </a>
+                                            <a href="https://www.messenger.com" target="_blank" class="social-icon messenger">
+                                                <i class="bi bi-messenger fs-4"></i>
+                                            </a>
+                                            <a href="https://www.twitter.com" target="_blank" class="social-icon twitter">
+                                                <i class="bi bi-twitter fs-4"></i>
+                                            </a>
+                                            <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">
+                                                <i class="bi bi-instagram fs-4"></i>
+                                            </a>
+                                            <a href="https://www.snapchat.com" target="_blank" class="social-icon snapchat">
+                                                <i class="bi bi-snapchat fs-4"></i>
+                                            </a>
+                                        </div>
+                                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <br />
+            </div>
+
+            <!-- Trailer -->
+            <h4 class="text-start">Trailer:</h4>
+            <div class="ratio ratio-21x9 align-items-end" style="max-width: 500px;">
+                <iframe src="https://www.youtube.com/embed/9NJj12tJzqc" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>

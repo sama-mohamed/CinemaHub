@@ -1,0 +1,45 @@
+﻿<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        @Html.Partial("../shared/_SideBar.cshtml")
+
+
+        <div class="col">
+            <div class="table-responsive mt-5">
+                <div class="d-flex align-items-center ms-3 mb-3" style="width: 90%; margin: auto;">
+                    <h1 class="table-title me-auto">Categories:</h1>
+                    <a href="/Admin/Category/AddCategory" type="button" class="btn btn-success btn-lg"><i class="bi bi-plus-circle"></i> Add Category</a>
+                </div>
+
+                <table class="table table-striped table-hover text-center" style="width: 100%; max-width: 90%; margin: auto;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Show Movies</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.Id</th>
+                                <td>@item.Name</td>
+                                <td><a href="/Customer/Home/ShowCategory?CategoryId=@item.Id">All Movies</a></td>
+                                <td>
+                                    <a href="/Admin/Category/EditCategory?CategoryId=@item.Id" type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
+                                </td>
+                                <td>
+                                    <a href="/Admin/Category/DeleteCategory?CategoryId=@item.Id" type="button" class="btn btn-danger"><i class="bi bi-trash3"></i> Remove</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

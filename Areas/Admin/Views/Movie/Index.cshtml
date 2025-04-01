@@ -1,0 +1,100 @@
+﻿<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        @Html.Partial("../shared/_SideBar.cshtml")
+
+        <div class="col">
+            <div class="table-responsive mt-4">
+                <div class="d-flex align-items-center mb-3" style="width: 100%; margin: auto;">
+                    <h2 class="table-title me-auto text-light">🎬 Movies List</h2>
+                    <a href="/Admin/Movie/Create" class="btn btn-success btn-lg"><i class="bi bi-plus-circle"></i> Add Movie</a>
+                </div>
+
+                <table class="table table-hover text-center" style="width: 99%; margin: auto; font-size: 15px;">
+                    <thead style="background-color: #333; color: white;">
+                        <tr style="font-size: 25px;">
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price </th>
+                            <th>Image</th>
+                            <th>Trailer </th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Status</th>
+                            <th>Cinema</th>
+                            <th>Category</th>
+                            <th>Edit </th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr style="border-bottom: 1px solid #ddd;">
+                                <td><strong>@item.Id</strong></td>
+                                <td>@item.Name</td>
+                                <td class="description">@item.Description</td>
+                                <td><b>$@item.Price</b></td>
+                                <td>
+                                    <img src="~/images/movies/@item.ImgUrl" alt="Movie Image" style="width: 85px; height: auto; border-radius: 8px;" />
+                                </td>
+                                <td><a href="@item.TrailerUrl" class="btn btn-outline-info btn-sm" target="_blank">Watch</a></td>
+                                <td>@item.StartDate.ToShortDateString()</td>
+                                <td>@item.EndDate.ToShortDateString()</td>
+                                <td><span class="badge bg-success">@item.MovieStatus</span></td>
+                                <td>@item.Cinema.Name</td>
+                                <td>@item.Category.Name</td>
+                                <td>
+                                    <a href="/Admin/Movie/Edit?MovieId=@item.Id" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                                </td>
+                                <td>
+                                    <a href="/Admin/Movie/Delete?MovieId=@item.Id" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i> Remove</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const descriptions = document.querySelectorAll(".description");
+
+        descriptions.forEach(desc => {
+            const fullText = desc.innerText;
+            const maxLength = 55;
+
+            if (fullText.length > maxLength) {
+                const shortText = fullText.substring(0, maxLength) + "... ";
+                const seeMore = document.createElement("span");
+                seeMore.innerText = "See More";
+                seeMore.style.color = "blue";
+                seeMore.style.cursor = "pointer";
+                seeMore.classList.add("see-more");
+
+                desc.innerHTML = shortText;
+                desc.appendChild(seeMore);
+
+                seeMore.addEventListener("click", function () {
+                    desc.innerHTML = fullText + " ";
+                    const seeLess = document.createElement("span");
+                    seeLess.innerText = "See Less";
+                    seeLess.style.color = "blue";
+                    seeLess.style.cursor = "pointer";
+                    seeLess.classList.add("see-less");
+
+                    desc.appendChild(seeLess);
+
+                    seeLess.addEventListener("click", function () {
+                        desc.innerHTML = shortText;
+                        desc.appendChild(seeMore);
+                    });
+                });
+            }
+        });
+    });
+</script>

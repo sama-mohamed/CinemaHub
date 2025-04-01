@@ -1,0 +1,352 @@
+﻿body {
+}
+
+/*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+    #sidebar .sidebar-header {
+        padding: 20px;
+        background: #6d7fcc;
+    }
+
+    #sidebar ul.components {
+        padding: 20px 0;
+        border-bottom: 1px solid #47748b;
+    }
+
+    #sidebar ul p {
+        color: #fff;
+        padding: 10px;
+    }
+
+    #sidebar ul li a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+    }
+
+        #sidebar ul li a:hover {
+            color: #7386D5;
+            background: #fff;
+        }
+
+    #sidebar ul li.active > a,
+    a[aria-expanded="true"] {
+        color: #fff;
+        background: #6d7fcc;
+    }
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+    ul.CTAs a {
+        text-align: center;
+        font-size: 0.9em !important;
+        display: block;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+
+.nav-link {
+    color: #d3d3d3 !important; /* لون النص رمادي فاتح */
+    width: 100%; /* امتداد العنصر بعرض القائمة */
+    padding: 10px 15px; /* ضبط التباعد الداخلي */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+    .nav-link:hover {
+        background-color: #322E5B !important; /* لون أفتح للخلفية عند التحويل */
+        color: #ffffff !important; /* لون النص أبيض */
+        border-radius: 5px; /* حواف مستديرة قليلاً */
+    }
+
+
+/* جعل جميع العناصر داخل هذا العنصر تأخذ العرض بالكامل */
+.sidebar {
+    width: 100%;
+}
+
+    .sidebar * {
+        width: 100%;
+    }
+
+    /* جعل الروابط تمتد على كامل العرض */
+    .sidebar .nav-link {
+        color: #d3d3d3 !important; /* لون النص رمادي فاتح */
+        padding: 10px 15px;
+        display: block; /* جعل الرابط يأخذ العرض الكامل */
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+#sidebar {
+    border-radius: 15px; /* تعديل مقدار الانحناء حسب الحاجة */
+    overflow: hidden; /* لضمان عدم خروج المحتوى عن الحواف المنحنية */
+}
+
+
+        /* تأثير الهافر */
+.sidebar .nav-link:hover {
+    background-color: #e67e00 !important; /* لون أفتح عند التحويل */
+    color: #ffffff !important;
+    border-radius: 5px;
+}
+
+.sider {
+    background-color: rgb(1, 16, 33);
+}
+.sider-a {
+    background-color: rgb(4, 1, 64);
+}
+
+/* تنسيق رأس الجدول */
+thead th {
+    background-color: #e67e00 !important; /* لون برتقالي داكن */
+    color: #f8f9fa !important; /* لون النص */
+    padding: 15px;
+}
+
+/* تحسين شكل الجدول */
+table {
+    border-radius: 20px;
+    overflow: hidden; /* لضمان تطبيق الـ border-radius */
+    font-size: 1.1rem; /* تحسين حجم الخط */
+    width: 90%; /* تصغير الجدول قليلاً */
+    margin: auto; /* توسيطه في الصفحة */
+}
+
+/* تحسين الصفوف */
+.table tbody tr {
+    height: 55px; /* زيادة ارتفاع الصف */
+}
+
+    /* تحسين الـ hover */
+    .table tbody tr:hover {
+        background-color: #ff9800 !important; /* لون فاتح أثناء التمرير */
+        color: white !important;
+        transition: 0.3s;
+    }
+
+.table-title {
+    font-weight: bold;
+    color: #f8f9fa;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 5%;
+}
+
+
+
+.get-in-touch {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgb(1, 16, 33);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+    .get-in-touch .title {
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 2.5em;
+        line-height: 48px;
+        padding-bottom: 20px;
+        color: #ffffff;
+        background: linear-gradient(to right, #f4524d, #5543ca);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+/* Form Styling */
+.contact-form .form-field {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.contact-form .input-text {
+    width: 100%;
+    padding: 12px 20px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+    .contact-form .input-text:focus {
+        border-color: #5543ca;
+        background: #333;
+    }
+
+/* Labels */
+.contact-form .label {
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+    font-size: 16px;
+    color: #aaa;
+    transition: all 0.3s ease-in-out;
+}
+
+.contact-form .input-text:focus + .label,
+.contact-form .input-text:not(:placeholder-shown) + .label {
+    bottom: 35px;
+    left: 15px;
+    font-size: 14px;
+    color: #5543ca;
+}
+
+/* Submit Button */
+.contact-form .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: linear-gradient(125deg, #a72879, #064497);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+    .contact-form .submit-btn:hover {
+        background: linear-gradient(125deg, #064497, #a72879);
+    }
+
+
+.control-label {
+    color:#5543ca;
+}

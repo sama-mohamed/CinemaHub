@@ -1,0 +1,53 @@
+﻿
+
+<div id="movie-card-list" class="row w-100 bg-dark ms-1 mt-4 container-fluid align-items-center">
+
+    @foreach (var item in Model.Movies)
+    {
+        <div class="movie-card col-lg-5" data-movie="Akira">
+            <div class="movie-card__overlay"></div>
+            <div class="row align-middle m-1 w-100">
+                <h2 class="movie-card__title">@item.Name</h2>
+
+            </div>
+            <div class="row align-items-center">
+                <div class="movie-img col-lg-5 align-items-center">
+                    <img class="movie-img-img h-75" src="../../images/movies/@item.ImgUrl" />
+                </div>
+                <div class="movie-card__content col col-lg-7">
+                    <div class="movie-card__header col">
+                        <h3 class="movie-card__info">@item.Price.ToString("c")</h3>
+                        <h6 class="movie-card__desc">📅Start Date: @item.StartDate</h6>
+                        <h6 class="movie-card__desc">⏳End Date: @item.EndDate</h6>
+                        <h6 class="movie-card__desc">🎬Category: @item.Category.Name</h6>
+                        @if (item.MovieStatus == 2)
+                        {
+                            <button type="button" class="btn btn-warning movie-card__button" disabled>Upcoming</button>
+                        }
+                        else if (item.MovieStatus == 1)
+                        {
+                            <button type="button" class="btn btn-info movie-card__button" disabled>Available</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-danger movie-card__button" disabled>Expired</button>
+                        }
+
+
+
+
+                    </div>
+
+                    <div class="row w-100 d-flex">
+
+                        <a href="/Customer/Home/Details?MovieId=@item.Id" class="btn btn-outline-primary movie-card__button col-lg-5 me-1" type="button"> Details</a>
+                        <a class="btn btn-success movie-card__button col-lg-5 ms-1" type="button">Book</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+</div>

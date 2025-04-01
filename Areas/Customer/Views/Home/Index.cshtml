@@ -1,0 +1,241 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="part1 m-auto position-relative">
+    <img src="~/images/1_nizTnQT3jvhlkGBh4jcNfw.png" class="header-img w-100">
+    <div class="overlay"></div>
+    <h1 class="header-text">The Best Movies</h1>
+    <div class="nav-desktop">
+        <ul>
+            <li><a href="#aboutus">AboutUs</a></li>
+            <li>
+                <select name="categoryId" class="categories" onchange="location.href=this.value;">
+                    <option value="">All Categories</option>
+                    @foreach (var item in Model)
+                    {
+                        <option value="/Customer/Home/ShowCategory?CategoryId=@item.Id">@item.Name</option>
+                    }
+                </select>
+            </li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="about-us text-center" id="aboutus">
+    <h5>About Us</h5>
+    <p>
+        At <strong>CinemaHub</strong>, we bring you the latest movies and an exceptional cinematic experience.
+        Enjoy easy ticket booking, high-quality visuals, and a cozy atmosphere for all movie lovers.
+        Discover a world of entertainment like never before!
+    </p>
+</div>
+
+
+
+
+
+<div id="movie-card-list" class="row w-100 bg-dark ms-1 container-fluid align-items-center">
+    <h3 class="text-light text-center fw-bold mb-4" style="font-size: 3rem; text-shadow: 2px 2px 8px rgba(255,255,255,0.3); letter-spacing: 5px;">UPCOMING MOVIES</h3>
+    <div class="owl-carousel owl-theme">
+        @foreach (var item in ViewBag.Movies)
+        {
+            <div class="movie-card  item pt-2" data-movie="@item.Name">
+                <div class="movie-card__overlay"></div>
+                <div class="row m-1 w-100">
+                    <h3 class="movie-card__title  ">@item.Name</h3>
+                </div>
+                <div class="row align-items-center">
+                    <div class="movie-img col-lg-5 col-md-5 col-sm-12 d-flex justify-content-center">
+                        <img class="movie-img-img w-100 h-100" src="../../images/movies/@item.ImgUrl" />
+                    </div>
+                    <div class="movie-card__content col">
+                        <div class="movie-card__header align-items-start">
+                            <h3 class="movie-card__info  float-start">@item.Price.ToString("c")</h3>
+                            <h6 class="movie-card__desc float-start">📅Start Date: @item.StartDate</h6>
+                            <h6 class="movie-card__desc float-start">⏳End Date: @item.EndDate</h6>
+                            <h6 class="movie-card__desc float-start">🎬Category: <a href="/Customer/Home/ShowCategory?CategoryId=@item.Category.Id">@item.Category.Name</a></h6>
+
+                            <button type="button" class="btn btn-warning movie-card__button" disabled>UpComing</button>
+                        </div>
+
+                        <div class="row w-100 d-flex justify-content-start">
+                            <a href="/Customer/Home/Details?MovieId=@item.Id" class="btn btn-outline-primary movie-card__button col-lg-5 col-md-5 col-sm-5 me-1">Details</a>
+                            <a class="btn btn-success movie-card__button col-lg-5 col-md-5 col-sm-5 ms-1">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<div class="gallery" id="gallery">
+    <div class="gallery-title">
+        <h3 class="text-warning text-center fw-bold mt-3 mb-5" style="font-size: 3rem; text-shadow: 2px 2px 8px rgba(255,255,255,0.3); letter-spacing: 5px;">Gallery</h3>
+    </div>
+    <div class="gallery-images">
+        <div class="gallery-item">
+            <img src="/images/3d-glasses-image-shutterstock.webp" alt="Image 1">
+        </div>
+        <div class="gallery-item">
+            <img src="/images/R.jpeg" alt="Image 3">
+        </div>
+        <div class="gallery-item">
+            <img src="/images/Friends_at_the_Movie_Theater.webp" alt="Image 2">
+        </div>
+        <div class="gallery-item">
+            <img src="/images/istockphoto-1279677858-612x612.jpg" alt="Image 3">
+        </div>
+        <div class="gallery-item">
+            <img src="/images/istockphoto-1470566813-612x612.jpg" alt="Image 3">
+        </div>
+        <div class="gallery-item">
+            <img src="/images/tgvi-city_ffhall_lr.jpg" alt="Image 3">
+        </div>
+        <div class="gallery-item">
+            <img src="/images/movie-theater.webp" alt="Image 3">
+        </div>
+        <div class="gallery-item">
+            <img src="/images/OIP (2).jpeg" alt="Image 3">
+        </div>
+    </div>
+</div>
+
+
+
+<div id="movie-card-list" class="row w-100 bg-dark ms-1 mt-4 container-fluid align-items-center">
+    <h3 class="text-warning text-center fw-bold mt-3 mb-5 w-100" style="font-size: 3rem; text-shadow: 2px 2px 8px rgba(255,255,255,0.3); letter-spacing: 5px;">See Some Of Our Movies</h3>
+
+    @foreach (var category in Model)
+    {
+        if (category.Id < 3)
+        {
+            <h4 class="text-light text-center fw-bold mt-5 mb-3" style="font-size: 3rem; text-shadow: 2px 2px 8px rgba(255,255,255,0.3); letter-spacing: 5px;">@category.Name MOVIES</h4>
+
+            <div class="owl-carousel owl-theme">
+                @foreach (var item in category.Movies)
+                {
+                    if (item.MovieStatus < 2)
+                    {
+                        <div class="movie-card item pt-2" data-movie="@item.Name">
+                            <div class="movie-card__overlay"></div>
+
+                            <div class="row m-1 w-100">
+                                <h3 class="movie-card__title">@item.Name</h3>
+                            </div>
+
+                            <div class="row align-items-center">
+                                <div class="movie-img col-lg-5 col-md-5 col-sm-12 d-flex justify-content-center">
+                                    <img class="movie-img-img w-100 h-100" src="../../images/movies/@item.ImgUrl" />
+                                </div>
+
+                                <div class="movie-card__content col">
+                                    <div class="movie-card__header align-items-start">
+                                        <h3 class="movie-card__info float-start">@item.Price.ToString("c")</h3>
+                                        <h6 class="movie-card__desc float-start">📅Start Date: @item.StartDate</h6>
+                                        <h6 class="movie-card__desc float-start">🎬Category: @item.Category.Name</h6>
+
+                                        @if (item.MovieStatus == 2)
+                                        {
+                                            <button type="button" class="btn btn-warning movie-card__button" disabled>Upcoming</button>
+                                        }
+                                        else if (item.MovieStatus == 1)
+                                        {
+                                            <button type="button" class="btn btn-info movie-card__button" disabled>Available</button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn btn-danger movie-card__button" disabled>Expired</button>
+                                        }
+                                    </div>
+
+                                    <div class="row w-100 d-flex justify-content-start">
+                                        <a href="/Customer/Home/Details?MovieId=@item.Id" class="btn btn-outline-primary movie-card__button col-lg-5 col-md-5 col-sm-5 me-1">Details</a>
+                                        <a class="btn btn-success movie-card__button col-lg-5 col-md-5 col-sm-5 ms-1">Book</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="text-center">
+                <a href="/Customer/Home/ShowCategory?categoryId=@category.Id" class="btn btn-outline-warning btn-lg">See More</a>
+            </div>
+            <hr class="text-light mt-5 mb-5" />
+        }
+    }
+</div>
+
+
+
+
+   
+
+
+
+
+
+
+
+@*<div id="movie-card-list" class="row w-100 bg-dark ms-1 mt-4 container-fluid align-items-center">
+    <h3 class="text-light text-center fw-bold mb-4" style="font-size: 3rem; text-shadow: 2px 2px 8px rgba(255,255,255,0.3); letter-spacing: 5px;">DRAMA MOVIES</h3>
+    <div class="owl-carousel owl-theme">
+        @foreach (var item in ViewBag.Drama.Movies)
+        {
+            <div class="movie-card  item pt-2" data-movie="@item.Name">
+                <div class="movie-card__overlay"></div>
+                <div class="row m-1 w-100">
+                    <h3 class="movie-card__title  ">@item.Name</h3>
+                </div>
+                <div class="row align-items-center">
+                    <div class="movie-img col-lg-5 col-md-5 col-sm-12 d-flex justify-content-center">
+                        <img class="movie-img-img w-100 h-100" src="../../images/movies/@item.ImgUrl" />
+                    </div>
+                    <div class="movie-card__content col">
+                        <div class="movie-card__header align-items-start">
+                            <h3 class="movie-card__info  float-start">@item.Price.ToString("c")</h3>
+                            <h6 class="movie-card__desc float-start">Start Date: @item.StartDate</h6>
+                            <h6 class="movie-card__desc float-start">End Date: @item.EndDate</h6>
+                            <h6 class="movie-card__desc float-start">Category: <a href="/Customer/Home/ShowCategory?CategoryId=1">@item.Category.Name</a></h6>
+
+                            <button type="button" class="btn btn-danger movie-card__button" disabled>Expired</button>
+                        </div>
+
+                        <div class="row w-100 d-flex justify-content-start">
+                            <a href="/Customer/Home/Details?MovieId=@item.Id" class="btn btn-outline-primary movie-card__button col-lg-5 col-md-5 col-sm-5 me-1">Details</a>
+                            <a class="btn btn-success movie-card__button col-lg-5 col-md-5 col-sm-5 ms-1">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>*@
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true, // Infinite loop
+                margin: 10, // Space between items
+                nav: true,  // Next/Prev arrows
+                dots: false, // Pagination dots
+                autoplay: true, // Auto
+                autoplayTimeout: 1500, // 3 seconds
+                autoplayHoverPause: true, // Pause on hover
+                responsive: {
+                    0: { items: 1 },        // 1 item on mobile
+                    600: { items: 2 },      // 2 items on tablets
+                    1000: { items: 3 }      // 3 items on desktops
+                }
+            });
+        });
+    </script>
+
+}

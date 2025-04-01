@@ -1,0 +1,14 @@
+﻿body {
+    color:aliceblue;
+}
+.contact-form .input-text {
+    width: 100%;
+    padding: 12px 20px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
